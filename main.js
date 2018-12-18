@@ -18,67 +18,74 @@ $(document).ready(function(){
     //pulisco html a ogni ricerca
     $('.container').html('');
 
-    $.ajax({
-      url:'https://api.themoviedb.org/3/search/movie',
-      method:'GET',
-      data: {
-        api_key:'591f55f90c0e21f16b04fc51951b4a5c',
-        language:'it',
-        query: searchValue
-      },
-      success: function(data) {
-        // console.log(data);
-        var movies = data. results;
+    //se l'utente non digita nulla: alert, sennò parte la chiamata
+    if (searchValue != ''){
 
-        for (var i = 0; i < movies.length; i++) {
-          var movie = movies[i];
+      $.ajax({
+        url:'https://api.themoviedb.org/3/search/movie',
+        method:'GET',
+        data: {
+          api_key:'591f55f90c0e21f16b04fc51951b4a5c',
+          language:'it',
+          query: searchValue
+        },
+        success: function(data) {
+          // console.log(data);
+          var movies = data. results;
 
-          var source   = $('#movie-template').html();
-          var template = Handlebars.compile(source);
+          for (var i = 0; i < movies.length; i++) {
+            var movie = movies[i];
 
-          //divido il numero del voto e lo porto a numero intero, arrotondato per eccesso
-          var numero = movie.vote_average /2;
-          // console.log(numero);
+            var source   = $('#movie-template').html();
+            var template = Handlebars.compile(source);
 
-          var numeroArrotondato = Math.ceil(numero);
-          // console.log(numeroArrotondato);
+            //divido il numero del voto e lo porto a numero intero, arrotondato per eccesso
+            var numero = movie.vote_average /2;
+            // console.log(numero);
 
-          var stringaPiene = '';
-          var stringaVuote = '';
-          var stringaStelle = '';
+            var numeroArrotondato = Math.ceil(numero);
+            // console.log(numeroArrotondato);
 
-          for (var k = 1; k <= numeroArrotondato; k++) {
-            var stellePiene = '<i class="fas fa-star"></i>';
-            stringaPiene += stellePiene
+            var stringaPiene = '';
+            var stringaVuote = '';
+            var stringaStelle = '';
+
+            for (var k = 1; k <= numeroArrotondato; k++) {
+              var stellePiene = '<i class="fas fa-star"></i>';
+              stringaPiene += stellePiene
+            }
+            // console.log(stringaPiene);
+
+            for (var x = 0; x < (5 - numeroArrotondato); x++) {
+              var stelleVuote = '<i class="far fa-star"></i>';
+              stringaVuote += stelleVuote;
+            }
+            // console.log(stringaVuote);
+
+            stringaStelle = (stringaPiene + stringaVuote);
+            // console.log(stringaStelle);
+
+            var context = {
+              title: movie.title,
+              original_title: movie.original_title,
+              original_language: movie.original_language,
+              vote_average: stringaStelle
+            };
+
+            var html = template(context);
+            $('.container').append(html);
+
           }
-          // console.log(stringaPiene);
 
-          for (var x = 0; x < (5 - numeroArrotondato); x++) {
-            var stelleVuote = '<i class="far fa-star"></i>';
-            stringaVuote += stelleVuote;
-          }
-          // console.log(stringaVuote);
-
-          stringaStelle = (stringaPiene + stringaVuote);
-          // console.log(stringaStelle);
-
-          var context = {
-            title: movie.title,
-            original_title: movie.original_title,
-            original_language: movie.original_language,
-            vote_average: stringaStelle
-          };
-
-          var html = template(context);
-          $('.container').append(html);
+        },
+        error: function() {
 
         }
-
-      },
-      error: function() {
-
-      }
-    });
+      });
+    }
+    else{
+      alert('Inserisci un titolo di un film')
+    }
   };
 
 });
