@@ -14,6 +14,26 @@
     <input type="text" id="search">
     <button id="myButton">Cerca</button>
 
+    <div class="container">
+
+    </div>
+
+    <script id="movie-template" type="text/x-handlebars-template">
+      <ul>
+        <li>Titolo: {{title}}</li>
+        <li>Titolo Originale: {{original_title}}</li>
+        <li>Lingua: {{original_language}}</li>
+        <li>Voto: {{vote_average }}
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+        </li>
+      </ul>
+
+    </script>
+
 
     <script src="main.js"></script>
   </body>
