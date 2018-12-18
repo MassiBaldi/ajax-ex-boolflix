@@ -2,6 +2,16 @@ $(document).ready(function(){
 
   $('#myButton').click(function(){
     // alert('ciao');
+    film();
+  });
+  $('input').keypress(function(event){
+    // alert('ciao')
+    if (event.which == 13){
+      film();
+    }
+  });
+
+  function film(){
     var searchValue = $('#search').val();
     // console.log(searchValue);
 
@@ -56,9 +66,8 @@ $(document).ready(function(){
             title: movie.title,
             original_title: movie.original_title,
             original_language: movie.original_language,
-            vote_average: numeroArrotondato + ' ' + stringaStelle
+            vote_average: stringaStelle
           };
-          console.log(movie.vote_average);
 
           var html = template(context);
           $('.container').append(html);
@@ -70,7 +79,6 @@ $(document).ready(function(){
 
       }
     });
-  });
-
+  };
 
 });

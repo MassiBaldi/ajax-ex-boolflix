@@ -3,3 +3,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+ul, input {
+  margin: 20px;
+  list-style: none;
+}
+input, button {
+  padding:5px;
+  border-radius: 5px;
+}
