@@ -30,11 +30,32 @@ $(document).ready(function(){
           var numeroArrotondato = Math.ceil(numero);
           console.log(numeroArrotondato);
 
+          var stringaPiene = '';
+          var stringaVuote = '';
+          var stringaStelle = '';
+
+          for (var k = 1; k <= numeroArrotondato; k++) {
+            var stellePiene = '<i class="fas fa-star"></i>';
+            stringaPiene += stellePiene
+          }
+          console.log(stringaPiene);
+
+          for (var x = 0; x < (5 - numeroArrotondato); x++) {
+            var stelleVuote = '<i class="far fa-star"></i>';
+            stringaVuote += stelleVuote;
+
+          }
+          console.log(stringaVuote);
+
+
+          stringaStelle = (stringaPiene + stringaVuote);
+          console.log(stringaStelle);
+
           var context = {
             title: movie.title,
             original_title: movie.original_title,
             original_language: movie.original_language,
-            vote_average: numeroArrotondato
+            vote_average: stringaStelle
           };
 
           var html = template(context);
