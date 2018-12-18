@@ -5,6 +5,9 @@ $(document).ready(function(){
     var searchValue = $('#search').val();
     // console.log(searchValue);
 
+    //pulisco html a ogni ricerca
+    $('.container').html('');
+
     $.ajax({
       url:'https://api.themoviedb.org/3/search/movie',
       method:'GET',
@@ -25,10 +28,10 @@ $(document).ready(function(){
 
           //divido il numero del voto e lo porto a numero intero, arrotondato per eccesso
           var numero = movie.vote_average /2;
-          console.log(numero);
+          // console.log(numero);
 
           var numeroArrotondato = Math.ceil(numero);
-          console.log(numeroArrotondato);
+          // console.log(numeroArrotondato);
 
           var stringaPiene = '';
           var stringaVuote = '';
@@ -38,35 +41,33 @@ $(document).ready(function(){
             var stellePiene = '<i class="fas fa-star"></i>';
             stringaPiene += stellePiene
           }
-          console.log(stringaPiene);
+          // console.log(stringaPiene);
 
           for (var x = 0; x < (5 - numeroArrotondato); x++) {
             var stelleVuote = '<i class="far fa-star"></i>';
             stringaVuote += stelleVuote;
-
           }
-          console.log(stringaVuote);
-
+          // console.log(stringaVuote);
 
           stringaStelle = (stringaPiene + stringaVuote);
-          console.log(stringaStelle);
+          // console.log(stringaStelle);
 
           var context = {
             title: movie.title,
             original_title: movie.original_title,
             original_language: movie.original_language,
-            vote_average: stringaStelle
+            vote_average: numeroArrotondato + ' ' + stringaStelle
           };
+          console.log(movie.vote_average);
 
           var html = template(context);
           $('.container').append(html);
-
 
         }
 
       },
       error: function() {
-        alert('Errore');
+
       }
     });
   });
