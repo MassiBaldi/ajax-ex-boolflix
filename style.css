@@ -11,3 +11,6 @@ input, button {
   padding:5px;
   border-radius: 5px;
 }
+.bandiera {
+  max-width: 30px;
+}
