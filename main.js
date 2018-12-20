@@ -38,8 +38,9 @@ function gestisciFilm(){
         query: searchValue
       },
       success: function(data) {
-        console.log(data);
+        // console.log(data);
         var movies = data.results;
+        console.log(movies);
 
         for (var i = 0; i < movies.length; i++) {
           var movie = movies[i];
@@ -56,7 +57,7 @@ function gestisciFilm(){
             query: searchValue
           },
           success: function(data) {
-            console.log(data);
+            // console.log(data);
             var serie = data.results;
 
             for (var i = 0; i < serie.length; i++) {
@@ -96,13 +97,13 @@ function gestisciListaFilm(movie){
   // console.log(numeroArrotondato);
 
   var context = {
-    immagine: locandinaFilm(movie),
+    immagine: gestisciLocandina(movie),
     genere: movie.genere,
     title: movie.title,
     original_title: movie.original_title,
     original_language: gestisciLingua(movie.original_language),
     vote_average: gestisciStelle(numeroArrotondato),
-    overview: movie.overview
+    overview: gestisciTrama(movie)
   };
 
   var html = template(context);
@@ -142,16 +143,16 @@ function gestisciLingua(original_language) {
 
   }
   else {
-    bandiera = original_language + ' non supportata'
+    bandiera = original_language + ' "non supportata"'
   }
 
   return bandiera;
 };
 //funzione per la locandina di film e serietv
-function locandinaFilm(movie) {
+function gestisciLocandina(movie) {
   var locandinaFilm = ''
 
-  if (movie.poster_path != 'null'){
+  if (movie.poster_path != ''){
 
     locandina = 'https://image.tmdb.org/t/p/w342' + movie.poster_path;
     locandinaFilm = "<img class='locandina' src='" + locandina + "' />";
@@ -161,4 +162,15 @@ function locandinaFilm(movie) {
     locandinaFilm = "<img class='locandina' src='" + locandina + "' />";
   }
   return locandinaFilm;
+};
+function gestisciTrama(movie) {
+  var tramaFilm = ''
+
+  if (movie.overview != '') {
+    tramaFilm = movie.overview
+  }
+  else {
+    tramaFilm = ' "non disponibile"'
+  }
+  return tramaFilm;
 };
