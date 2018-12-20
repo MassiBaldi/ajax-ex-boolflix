@@ -2,6 +2,10 @@ var paesiSupportati = ['it', 'en', 'es', 'fr', 'ge'];
 
 $(document).ready(function(){
 
+  var orario = moment().format("D, dddd MMMM YYYY, h:mm:ss a");
+  console.log(orario);
+  $('.ora').append(orario);
+
   $('#myButton').click(function(){
     // alert('ciao');
     gestisciFilm();

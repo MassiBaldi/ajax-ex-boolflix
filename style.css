@@ -19,8 +19,16 @@
 .nav h1, .navSearch {
   margin: 40px;
 }
+.ora {
+  margin: 20px 0;
+  padding: 5px 10px;
+  border: 2px solid #3d3d3d;
+  border-radius: 5px;
+  color: #e50914;
+}
 input, button {
   padding: 5px 10px;
+  border: 2px solid #3d3d3d;
   border-radius: 5px;
   font-size: 14px;
   outline: none;
@@ -30,6 +38,9 @@ input {
 }
 button {
   color: #e50914;
+}
+button:hover {
+  background: #3d3d3d;
 }
 .container {
   display: flex;
