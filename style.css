@@ -2,15 +2,95 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
-ul, input {
-  margin: 20px;
-  list-style: none;
+.nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  background: black;
+  border-bottom: 2px solid #3d3d3d;
+}
+.nav h1 {
+  color: #e50914;
+}
+.nav h1, .navSearch {
+  margin: 40px;
 }
 input, button {
-  padding:5px;
+  padding: 5px 10px;
   border-radius: 5px;
+  font-size: 14px;
+  outline: none;
+}
+input {
+  width: 200px;
+}
+button {
+  color: #e50914;
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+  height: calc(100vh - 80px);
+  overflow-y: auto;
+  padding: 40px;
+  background: #141414;
+}
+.preview {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #e50914;
+}
+.preview h2, .preview h3 {
+  margin: auto;
+}
+.preview h2 {
+  font-size: 300px;
+}
+.cardImmagine, .card {
+  width: 346px;
+  height: 480px;
+}
+.cardImmagine {
+  position: relative;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  padding: 15px;
+  color: white;
+  border: 2px solid white;
+  background: #141414;
+  overflow-y: auto;
+}
+.cardImmagine:hover .card{
+  display: block;
+}
+ul {
+  list-style: none;
+}
+.card li {
+  padding: 10px;
+  color: white;
 }
 .bandiera {
   max-width: 30px;
+}
+i {
+  color: yellow;
+}
+.locandina {
+  width: 346px;
+  height: 480px;
+  background-size: cover;
 }

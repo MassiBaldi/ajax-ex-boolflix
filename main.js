@@ -6,6 +6,7 @@ $(document).ready(function(){
     // alert('ciao');
     gestisciFilm();
   });
+
   $('input').keypress(function(event){
     // alert('ciao')
     if (event.which == 13){
@@ -38,6 +39,7 @@ function gestisciFilm(){
 
         for (var i = 0; i < movies.length; i++) {
           var movie = movies[i];
+          movie.genere = 'Film';
           gestisciListaFilm(movie);
         }
 
@@ -56,6 +58,7 @@ function gestisciFilm(){
             for (var i = 0; i < serie.length; i++) {
               // console.log(serie[i]);
               var serieTv = serie[i];
+              serieTv.genere = 'SerieTV';
               serieTv.title = serieTv.name;
               serieTv.original_title = serieTv.original_name;
               gestisciListaFilm(serieTv);
@@ -89,18 +92,20 @@ function gestisciListaFilm(movie){
   // console.log(numeroArrotondato);
 
   var context = {
-    genere: 'Film',
+    immagine: locandinaFilm(movie),
+    genere: movie.genere,
     title: movie.title,
     original_title: movie.original_title,
     original_language: gestisciLingua(movie.original_language),
-    vote_average: gestisciStelle(numeroArrotondato)
+    vote_average: gestisciStelle(numeroArrotondato),
+    overview: movie.overview
   };
 
   var html = template(context);
   $('.container').append(html);
 
 };
-
+//funzione che a senconda del voto mette le stelle
 function gestisciStelle(numeroArrotondato) {
 
   var stringaPiene = '';
@@ -123,7 +128,7 @@ function gestisciStelle(numeroArrotondato) {
 
   return stringaStelle;
 };
-
+//funzione che a seconda della lingua mette la bandiera corrispondente
 function gestisciLingua(original_language) {
   var bandiera = '';
 
@@ -137,4 +142,19 @@ function gestisciLingua(original_language) {
   }
 
   return bandiera;
+};
+//funzione per la locandina di film e serietv
+function locandinaFilm(movie) {
+  var locandinaFilm = ''
+
+  if (movie.poster_path != 'null'){
+
+    locandina = 'https://image.tmdb.org/t/p/w342' + movie.poster_path;
+    locandinaFilm = "<img class='locandina' src='" + locandina + "' />";
+  }
+  else {
+    locandina = 'https://image.tmdb.org/t/p/w342null'
+    locandinaFilm = "<img class='locandina' src='" + locandina + "' />";
+  }
+  return locandinaFilm;
 };

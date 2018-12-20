@@ -6,31 +6,47 @@
     <script src="https://momentjs.com/downloads/moment.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <link rel="stylesheet" href="style.css">
     <title>Boolflix</title>
   </head>
   <body>
-    <input type="text" id="search">
-    <button id="myButton">Cerca</button>
+    <div class="nav">
+      <h1>BOOLFLIX</h1>
+      <div class="navSearch">
+        <input type="text" id="search" placeholder="Digita Titolo Film o SerieTv">
+        <button id="myButton">Cerca</button>
+      </div>
+    </div>
 
     <div class="container">
+      <div class="preview">
+        <h2>BoolFlix</h2>
+        <h3>By M.B</h3>
+      </div>
+
 
     </div>
 
     <script id="movie-template" type="text/x-handlebars-template">
       <ul>
-        <li>{{Immagine}}</li>
-        <li>Genere: {{genere}}</li>
-        <li>Titolo: {{title}}</li>
-        <li>Titolo Originale: {{original_title}}</li>
-        <li>Lingua: {{{original_language}}}</li>
-        <li>Voto: {{{vote_average}}}</li>
+        <div class="cardImmagine">
+          <li>{{{immagine}}}</li>
+          <div class="card">
+            <li>Genere: {{genere}}</li>
+            <li>Titolo: {{title}}</li>
+            <li>Titolo Originale: {{original_title}}</li>
+            <li>Lingua: {{{original_language}}}</li>
+            <li>Voto: {{{vote_average}}}</li>
+            <li>Trama: {{overview}}</li>
+          </div>
+        </div>
+
 
       </ul>
 
     </script>
-
     <script src="main.js"></script>
   </body>
 </html>
