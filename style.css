@@ -87,6 +87,11 @@ button:hover {
 .cardImmagine:hover .card{
   display: block;
 }
+.cardImmagine .fotoLocandina {
+  width: 346px;
+  height: 480px;
+  background-size: cover;
+}
 ul {
   list-style: none;
 }

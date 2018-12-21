@@ -2,7 +2,7 @@ var paesiSupportati = ['it', 'en', 'es', 'fr', 'ge'];
 
 $(document).ready(function(){
 
-  var orario = moment().format("D, dddd MMMM YYYY, h:mm:ss a");
+  var orario = moment().format("D, dddd MMMM YYYY");
   console.log(orario);
   $('.ora').append(orario);
 
@@ -152,17 +152,18 @@ function gestisciLingua(original_language) {
 function gestisciLocandina(movie) {
   var locandinaFilm = ''
 
-  if (movie.poster_path != ''){
+  if (movie.poster_path != null){
 
     locandina = 'https://image.tmdb.org/t/p/w342' + movie.poster_path;
     locandinaFilm = "<img class='locandina' src='" + locandina + "' />";
   }
   else {
-    locandina = 'https://image.tmdb.org/t/p/w342null'
-    locandinaFilm = "<img class='locandina' src='" + locandina + "' />";
+    locandina = 'foto';
+    locandinaFilm = "<img class='fotoLocandina' src='" + locandina + ".jpg'>"
   }
   return locandinaFilm;
 };
+
 function gestisciTrama(movie) {
   var tramaFilm = ''
 
